@@ -1,7 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import html2canvas from "html2canvas";
 
-const Input = (props) => <input {...props} className="border px-2 py-1 rounded w-full" />;
+const Input = (props) => (
+  <input
+    {...props}
+    className="border px-2 py-1 rounded w-full"
+    onKeyDown={(e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+      }
+    }}
+  />
+);
 const Button = ({ children, ...props }) => (
   <button {...props} className="bg-blue-500 text-white py-2 px-4 rounded w-full hover:bg-blue-600" >
     {children}
