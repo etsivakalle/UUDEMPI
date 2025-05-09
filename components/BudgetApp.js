@@ -103,18 +103,31 @@ export default function BudgetApp() {
   const kokonaisMenot = pakolliset + laskut + muutMenot;
   const saldo = tulot - kokonaisMenot;
 
-  const Rivi = ({ label, id }) => (
+  const Rivi = ({ label, id }) => {
+  const [inputValue, setInputValue] = useState(arvot[id].toString());
+
+  useEffect(() => {
+    setInputValue(arvot[id].toString());
+  }, [arvot, id]);
+
+  const handleBlur = () => {
+    setArvot({ ...arvot, [id]: parseFloat(inputValue) || 0 });
+  };
+
+  return (
     <div className="flex justify-between items-center mb-1">
       <label className="text-sm w-2/3" htmlFor={id}>{label}</label>
       <Input
         id={id}
-        type="number"
-        value={arvot[id]}
-        onChange={(e) => muuta(id, e.target.value)}
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        onBlur={handleBlur}
         className="w-1/3"
       />
     </div>
   );
+};
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 max-w-md mx-auto space-y-4">
