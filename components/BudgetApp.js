@@ -114,7 +114,51 @@ export default function BudgetApp() {
       <div id="budjetti-nakyma">
         <Card>
           <CardContent className="p-4 space-y-4">
-            {/* sisältö säilyy muuttumattomana */}
+            <h2 className="font-bold">1. Pakolliset menot</h2>
+<Rivi label="Vuokra" id="vuokra" />
+<Rivi label="Lainat" id="lainat" />
+<Rivi label="Velat" id="velat" />
+<Rivi label="Laskut" id="laskut" />
+<Rivi label="Ruoka" id="ruoka" />
+<Rivi label="Vaatteet" id="vaatteet" />
+<Rivi label="Muu meno" id="muuPakollinen" />
+<p className="font-semibold">Yhteensä: {pakolliset.toFixed(2)} €</p>
+
+<h2 className="font-bold mt-4">2. Laskujen erittely</h2>
+<Rivi label="Sähkölasku" id="sahko" />
+<Rivi label="Sähkön siirto" id="sahkonsiirto" />
+<Rivi label="Kotivakuutus" id="vakuutus" />
+<Rivi label="Vesilasku" id="vesi" />
+<Rivi label="Puhelinlasku" id="puhelin" />
+<Rivi label="Nettilasku" id="netti" />
+<Rivi label="Muut laskut" id="muutLaskut" />
+<p className="font-semibold">Yhteensä: {laskut.toFixed(2)} €</p>
+
+<h2 className="font-bold mt-4">3. Muut menot</h2>
+<Rivi label="Harrastaminen" id="harrastukset" />
+<Rivi label="Wolt / Foodora" id="ruokaUlkona" />
+<Rivi label="Ravintolat" id="ravintolat" />
+<Rivi label="Suoratoistopalvelut" id="suoratoisto" />
+<Rivi label="HSL" id="hsl" />
+<Rivi label="Nikotiinituotteet" id="nikotiini" />
+<Rivi label="Muu meno" id="muuMeno" />
+<p className="font-semibold">Yhteensä: {muutMenot.toFixed(2)} €</p>
+
+<h2 className="font-bold mt-4">4. Tulot</h2>
+<Rivi label="Palkka" id="palkka" />
+<Rivi label="Asumistuki" id="asumistuki" />
+<Rivi label="Työttömyysturva" id="tyottomyysturva" />
+<Rivi label="Toimeentulotuki" id="toimeentulotuki" />
+<Rivi label="Opintoraha" id="opintoraha" />
+<Rivi label="Opintolaina" id="opintolaina" />
+<Rivi label="Sairauspäiväraha" id="sairauspvraha" />
+<Rivi label="Muu tulo" id="muutTulot" />
+<p className="font-semibold">Yhteensä: {tulot.toFixed(2)} €</p>
+
+<hr className="my-2" />
+<p><strong>Kuukauden tulot yhteensä:</strong> {tulot.toFixed(2)} €</p>
+<p><strong>Kuukauden menot yhteensä:</strong> {kokonaisMenot.toFixed(2)} €</p>
+<p><strong>Kuukauden saldo:</strong> {saldo.toFixed(2)} €</p>
           </CardContent>
         </Card>
       </div>
