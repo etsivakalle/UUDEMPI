@@ -46,13 +46,21 @@ export default function BudgetApp() {
     muutTulot: 0,
   };
 
-  const [arvot, setArvot] = useState(() => {
-    const tallennetut = localStorage.getItem("budjetti-arvot");
-    return tallennetut ? JSON.parse(tallennetut) : aloitusarvot;
-  });
+  const [arvot, setArvot] = useState(aloitusarvot);
 
   useEffect(() => {
-    localStorage.setItem("budjetti-arvot", JSON.stringify(arvot));
+    if (typeof window !== "undefined") {
+      const tallennetut = localStorage.getItem("budjetti-arvot");
+      if (tallennetut) {
+        setArvot(JSON.parse(tallennetut));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("budjetti-arvot", JSON.stringify(arvot));
+    }
   }, [arvot]);
 
   const muuta = (key, value) => {
