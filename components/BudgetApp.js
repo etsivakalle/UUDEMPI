@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 const Input = (props) => (
   <input
@@ -121,6 +122,23 @@ export default function BudgetApp() {
     }
   };
 
+  const lataaPdf = async () => {
+    const element = document.getElementById("budjetti-nakyma");
+    if (element) {
+      const canvas = await html2canvas(element);
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const imgProps = pdf.getImageProperties(imgData);
+      const imgWidth = pageWidth;
+      const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+      const margin = (pageHeight - imgHeight) / 2;
+      pdf.addImage(imgData, "PNG", 0, margin > 0 ? margin : 0, imgWidth, imgHeight);
+      pdf.save("budjetti.pdf");
+    }
+  };
+
   const ryhmaSumma = (avaimet) => avaimet.reduce((sum, k) => sum + arvot[k], 0);
   const pakolliset = ryhmaSumma(["vuokra", "lainat", "velat", "laskut", "ruoka", "vaatteet", "muuPakollinen"]);
   const laskut = ryhmaSumma(["sahko", "sahkonsiirto", "vakuutus", "vesi", "puhelin", "netti", "muutLaskut"]);
@@ -212,11 +230,19 @@ export default function BudgetApp() {
           <hr style={{ margin: '16px 0' }} />
           <p><strong>Kuukauden tulot yhteensä:</strong> {tulot.toFixed(2)} €</p>
           <p><strong>Kuukauden menot yhteensä:</strong> {kokonaisMenot.toFixed(2)} €</p>
+          <p><strong>Kuukauden saldo:</strong> <span style={{ color: saldo >= 0 ? 'green' : 'red' }}>{saldo.toFixed(2)} €</span></p>
+        </CardContent></Card>
+
+        <Card><CardContent style={{ backgroundColor: '#e0e7ff', padding: '1.5rem', borderRadius: '0.5rem', fontSize: '18px' }}>
+          <h2 style={{ marginBottom: '8px' }}>Yhteenveto</h2> {tulot.toFixed(2)} €</p>
+          <p><strong>Kuukauden menot yhteensä:</strong> {kokonaisMenot.toFixed(2)} €</p>
           <p><strong>Kuukauden saldo:</strong> {saldo.toFixed(2)} €</p>
         </CardContent></Card>
+
       </div>
 
       <Button onClick={lataaKuvana}>Tallenna kuvana</Button>
+      <Button onClick={lataaPdf}>Lataa PDF</Button>
       <Button onClick={tyhjenna}>Tyhjennä kaikki</Button>
       <p style={{ textAlign: 'center', fontSize: '14px', color: '#777', marginTop: '24px' }}>Versio 1.0</p>
     </div>
