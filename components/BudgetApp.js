@@ -155,8 +155,8 @@ export default function BudgetApp() {
         Stadin etsivät, Helsingin kaupungin etsivä nuorisotyö
       </p>
 
-      <div id="budjetti-nakyma">
-        <Card><CardContent style={{ backgroundColor: '#fee2e2', padding: '1.5rem', borderRadius: '0.5rem' }}><h2>1. Pakolliset menot</h2>
+      <div id="budjetti-nakyma" style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+        <Card><div style={{ flex: '1 1 280px' }}><CardContent style={{ backgroundColor: '#fee2e2', padding: '1.5rem', borderRadius: '0.5rem' }}><h2>1. Pakolliset menot</h2>
           <Rivi label="Vuokra" id="vuokra" />
           <Rivi label="Lainat" id="lainat" />
           <Rivi label="Velat" id="velat" />
@@ -165,7 +165,7 @@ export default function BudgetApp() {
           <Rivi label="Vaatteet" id="vaatteet" />
           <Rivi label="Muu meno" id="muuPakollinen" />
           <p><strong>Yhteensä:</strong> {pakolliset.toFixed(2)} €</p>
-        </CardContent></Card>
+        </CardContent></div></Card>
 
         <Card><CardContent style={{ backgroundColor: '#fef9c3', padding: '1.5rem', borderRadius: '0.5rem' }}><h2>2. Laskujen erittely</h2>
           <Rivi label="Sähkölasku" id="sahko" />
