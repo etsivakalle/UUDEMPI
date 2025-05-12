@@ -234,7 +234,8 @@ export default function BudgetApp() {
         </CardContent></Card>
 
         <Card><CardContent style={{ backgroundColor: '#e0e7ff', padding: '1.5rem', borderRadius: '0.5rem', fontSize: '18px' }}>
-          <h2 style={{ marginBottom: '8px' }}>Yhteenveto</h2> {tulot.toFixed(2)} €</p>
+          <h2 style={{ marginBottom: '8px' }}>Yhteenveto</h2>
+          <p><strong>Kuukauden tulot yhteensä:</strong> {tulot.toFixed(2)} €</p>
           <p><strong>Kuukauden menot yhteensä:</strong> {kokonaisMenot.toFixed(2)} €</p>
           <p><strong>Kuukauden saldo:</strong> {saldo.toFixed(2)} €</p>
         </CardContent></Card>
