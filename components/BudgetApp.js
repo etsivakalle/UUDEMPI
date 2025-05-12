@@ -4,7 +4,7 @@ import html2canvas from "html2canvas";
 const Input = (props) => (
   <input
     {...props}
-    className="border px-2 py-1 rounded w-full"
+    style={{ padding: '8px', margin: '4px 0', fontSize: '16px', width: '100%' }}
     onKeyDown={(e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -12,13 +12,33 @@ const Input = (props) => (
     }}
   />
 );
+
 const Button = ({ children, ...props }) => (
-  <button {...props} className="bg-blue-500 text-white py-2 px-4 rounded w-full hover:bg-blue-600" >
+  <button
+    {...props}
+    style={{
+      backgroundColor: '#2563eb',
+      color: '#fff',
+      padding: '12px',
+      fontSize: '16px',
+      border: 'none',
+      borderRadius: '6px',
+      marginTop: '12px',
+      width: '100%',
+      cursor: 'pointer'
+    }}
+  >
     {children}
   </button>
 );
-const Card = ({ children }) => <div className="bg-white rounded shadow">{children}</div>;
-const CardContent = ({ children, className }) => <div className={className}>{children}</div>;
+
+const Card = ({ children }) => (
+  <div style={{ marginBottom: '20px' }}>{children}</div>
+);
+
+const CardContent = ({ children, style }) => (
+  <div style={{ ...style, fontSize: '16px', lineHeight: '1.6' }}>{children}</div>
+);
 
 export default function BudgetApp() {
   const aloitusarvot = {
@@ -104,89 +124,92 @@ export default function BudgetApp() {
   const saldo = tulot - kokonaisMenot;
 
   const Rivi = ({ label, id }) => {
-  const [inputValue, setInputValue] = useState(arvot[id].toString());
+    const [inputValue, setInputValue] = useState(arvot[id].toString());
 
-  useEffect(() => {
-    setInputValue(arvot[id].toString());
-  }, [arvot, id]);
+    useEffect(() => {
+      setInputValue(arvot[id].toString());
+    }, [arvot, id]);
 
-  const handleBlur = () => {
-    setArvot({ ...arvot, [id]: parseFloat(inputValue) || 0 });
+    const handleBlur = () => {
+      setArvot({ ...arvot, [id]: parseFloat(inputValue) || 0 });
+    };
+
+    return (
+      <div style={{ marginBottom: '12px' }}>
+        <label htmlFor={id} style={{ display: 'block', marginBottom: '4px' }}>{label}</label>
+        <Input
+          id={id}
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onBlur={handleBlur}
+        />
+      </div>
+    );
   };
 
   return (
-    <div className="flex justify-between items-center mb-2 text-base">
-      <label className="text-sm w-2/3" htmlFor={id}>{label}</label>
-      <Input
-        id={id}
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onBlur={handleBlur}
-        className="w-1/3"
-      />
-    </div>
-  );
-};
+    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '16px', fontFamily: 'sans-serif' }}>
+      <h1 style={{ fontSize: '28px', fontWeight: 'bold', textAlign: 'center', marginBottom: '8px' }}>Oma Budjetti</h1>
+      <p style={{ textAlign: 'center', fontSize: '14px', color: '#555', marginBottom: '16px' }}>
+        Stadin etsivät, Helsingin kaupungin etsivä nuorisotyö
+      </p>
 
-  return (
-    <div className="min-h-screen bg-gray-50 p-4 max-w-md mx-auto space-y-4">
-      <h1 className="text-2xl font-bold text-center mb-2">Oma Budjetti</h1>
-      <p className="text-center text-sm text-gray-700 mb-4">Stadin etsivät, Helsingin kaupungin etsivä nuorisotyö</p>
+      <div id="budjetti-nakyma">
+        <Card><CardContent style={{ backgroundColor: '#fee2e2', padding: '1.5rem', borderRadius: '0.5rem' }}><h2>1. Pakolliset menot</h2>
+          <Rivi label="Vuokra" id="vuokra" />
+          <Rivi label="Lainat" id="lainat" />
+          <Rivi label="Velat" id="velat" />
+          <Rivi label="Laskut" id="laskut" />
+          <Rivi label="Ruoka" id="ruoka" />
+          <Rivi label="Vaatteet" id="vaatteet" />
+          <Rivi label="Muu meno" id="muuPakollinen" />
+          <p><strong>Yhteensä:</strong> {pakolliset.toFixed(2)} €</p>
+        </CardContent></Card>
 
-      <div id="budjetti-nakyma" className="grid gap-4 md:grid-cols-2">
-        <Card><CardContent style={{ backgroundColor: '#fee2e2', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 className="font-bold">1. Pakolliset menot</h2>
-<Rivi label="Vuokra" id="vuokra" />
-<Rivi label="Lainat" id="lainat" />
-<Rivi label="Velat" id="velat" />
-<Rivi label="Laskut" id="laskut" />
-<Rivi label="Ruoka" id="ruoka" />
-<Rivi label="Vaatteet" id="vaatteet" />
-<Rivi label="Muu meno" id="muuPakollinen" />
-<p className="font-semibold">Yhteensä: {pakolliset.toFixed(2)} €</p>
+        <Card><CardContent style={{ backgroundColor: '#fef9c3', padding: '1.5rem', borderRadius: '0.5rem' }}><h2>2. Laskujen erittely</h2>
+          <Rivi label="Sähkölasku" id="sahko" />
+          <Rivi label="Sähkön siirto" id="sahkonsiirto" />
+          <Rivi label="Kotivakuutus" id="vakuutus" />
+          <Rivi label="Vesilasku" id="vesi" />
+          <Rivi label="Puhelinlasku" id="puhelin" />
+          <Rivi label="Nettilasku" id="netti" />
+          <Rivi label="Muut laskut" id="muutLaskut" />
+          <p><strong>Yhteensä:</strong> {laskut.toFixed(2)} €</p>
+        </CardContent></Card>
 
-</CardContent></Card><Card><CardContent style={{ backgroundColor: '#fef9c3', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 className="font-bold">2. Laskujen erittely</h2>
-<Rivi label="Sähkölasku" id="sahko" />
-<Rivi label="Sähkön siirto" id="sahkonsiirto" />
-<Rivi label="Kotivakuutus" id="vakuutus" />
-<Rivi label="Vesilasku" id="vesi" />
-<Rivi label="Puhelinlasku" id="puhelin" />
-<Rivi label="Nettilasku" id="netti" />
-<Rivi label="Muut laskut" id="muutLaskut" />
-<p className="font-semibold">Yhteensä: {laskut.toFixed(2)} €</p>
+        <Card><CardContent style={{ backgroundColor: '#f3f4f6', padding: '1.5rem', borderRadius: '0.5rem' }}><h2>3. Muut menot</h2>
+          <Rivi label="Harrastaminen" id="harrastukset" />
+          <Rivi label="Wolt / Foodora" id="ruokaUlkona" />
+          <Rivi label="Ravintolat" id="ravintolat" />
+          <Rivi label="Suoratoistopalvelut" id="suoratoisto" />
+          <Rivi label="HSL" id="hsl" />
+          <Rivi label="Nikotiinituotteet" id="nikotiini" />
+          <Rivi label="Muu meno" id="muuMeno" />
+          <p><strong>Yhteensä:</strong> {muutMenot.toFixed(2)} €</p>
+        </CardContent></Card>
 
-</CardContent></Card><Card><CardContent style={{ backgroundColor: '#f3f4f6', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 className="font-bold">3. Muut menot</h2>
-<Rivi label="Harrastaminen" id="harrastukset" />
-<Rivi label="Wolt / Foodora" id="ruokaUlkona" />
-<Rivi label="Ravintolat" id="ravintolat" />
-<Rivi label="Suoratoistopalvelut" id="suoratoisto" />
-<Rivi label="HSL" id="hsl" />
-<Rivi label="Nikotiinituotteet" id="nikotiini" />
-<Rivi label="Muu meno" id="muuMeno" />
-<p className="font-semibold">Yhteensä: {muutMenot.toFixed(2)} €</p>
+        <Card><CardContent style={{ backgroundColor: '#dcfce7', padding: '1.5rem', borderRadius: '0.5rem' }}><h2>4. Tulot</h2>
+          <Rivi label="Palkka" id="palkka" />
+          <Rivi label="Asumistuki" id="asumistuki" />
+          <Rivi label="Työttömyysturva" id="tyottomyysturva" />
+          <Rivi label="Toimeentulotuki" id="toimeentulotuki" />
+          <Rivi label="Opintoraha" id="opintoraha" />
+          <Rivi label="Opintolaina" id="opintolaina" />
+          <Rivi label="Sairauspäiväraha" id="sairauspvraha" />
+          <Rivi label="Muu tulo" id="muutTulot" />
+          <p><strong>Yhteensä:</strong> {tulot.toFixed(2)} €</p>
 
-</CardContent></Card><Card><CardContent style={{ backgroundColor: '#dcfce7', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 className="font-bold">4. Tulot</h2>
-<Rivi label="Palkka" id="palkka" />
-<Rivi label="Asumistuki" id="asumistuki" />
-<Rivi label="Työttömyysturva" id="tyottomyysturva" />
-<Rivi label="Toimeentulotuki" id="toimeentulotuki" />
-<Rivi label="Opintoraha" id="opintoraha" />
-<Rivi label="Opintolaina" id="opintolaina" />
-<Rivi label="Sairauspäiväraha" id="sairauspvraha" />
-<Rivi label="Muu tulo" id="muutTulot" />
-<p className="font-semibold">Yhteensä: {tulot.toFixed(2)} €</p>
-
-<hr className="my-2" />
-<p><strong>Kuukauden tulot yhteensä:</strong> {tulot.toFixed(2)} €</p>
-<p><strong>Kuukauden menot yhteensä:</strong> {kokonaisMenot.toFixed(2)} €</p>
-<p><strong>Kuukauden saldo:</strong> {saldo.toFixed(2)} €</p>
-          </CardContent>
-        </Card>
+          <hr style={{ margin: '16px 0' }} />
+          <p><strong>Kuukauden tulot yhteensä:</strong> {tulot.toFixed(2)} €</p>
+          <p><strong>Kuukauden menot yhteensä:</strong> {kokonaisMenot.toFixed(2)} €</p>
+          <p><strong>Kuukauden saldo:</strong> {saldo.toFixed(2)} €</p>
+        </CardContent></Card>
       </div>
 
       <Button onClick={lataaKuvana}>Tallenna kuvana</Button>
-      <Button onClick={tyhjenna} className="mt-2 bg-red-600 hover:bg-red-700">Tyhjennä kaikki</Button>
-      <p className="text-center text-sm text-gray-500 mt-6">Versio 1.0</p>
+      <Button onClick={tyhjenna}>Tyhjennä kaikki</Button>
+      <p style={{ textAlign: 'center', fontSize: '14px', color: '#777', marginTop: '24px' }}>Versio 1.0</p>
     </div>
   );
 }
