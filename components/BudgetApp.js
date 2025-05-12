@@ -115,7 +115,7 @@ export default function BudgetApp() {
   };
 
   return (
-    <div className="flex justify-between items-center mb-1">
+    <div className="flex justify-between items-center mb-2 text-base">
       <label className="text-sm w-2/3" htmlFor={id}>{label}</label>
       <Input
         id={id}
@@ -131,11 +131,11 @@ export default function BudgetApp() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 max-w-md mx-auto space-y-4">
-      <h1 className="text-xl font-bold text-center">Oma Budjetti</h1>
-      <p className="text-center text-xs text-gray-600">Stadin etsivät, Helsingin kaupungin etsivä nuorisotyö</p>
+      <h1 className="text-2xl font-bold text-center mb-2">Oma Budjetti</h1>
+      <p className="text-center text-sm text-gray-700 mb-4">Stadin etsivät, Helsingin kaupungin etsivä nuorisotyö</p>
 
       <div id="budjetti-nakyma" className="grid gap-4 md:grid-cols-2">
-        <Card><CardContent className="p-6 bg-red-50 rounded"><h2 className="font-bold">1. Pakolliset menot</h2>
+        <Card><CardContent style={{ backgroundColor: '#fee2e2', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 className="font-bold">1. Pakolliset menot</h2>
 <Rivi label="Vuokra" id="vuokra" />
 <Rivi label="Lainat" id="lainat" />
 <Rivi label="Velat" id="velat" />
@@ -145,7 +145,7 @@ export default function BudgetApp() {
 <Rivi label="Muu meno" id="muuPakollinen" />
 <p className="font-semibold">Yhteensä: {pakolliset.toFixed(2)} €</p>
 
-</CardContent></Card><Card><CardContent className="p-6 bg-yellow-50 rounded"><h2 className="font-bold">2. Laskujen erittely</h2>
+</CardContent></Card><Card><CardContent style={{ backgroundColor: '#fef9c3', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 className="font-bold">2. Laskujen erittely</h2>
 <Rivi label="Sähkölasku" id="sahko" />
 <Rivi label="Sähkön siirto" id="sahkonsiirto" />
 <Rivi label="Kotivakuutus" id="vakuutus" />
@@ -155,7 +155,7 @@ export default function BudgetApp() {
 <Rivi label="Muut laskut" id="muutLaskut" />
 <p className="font-semibold">Yhteensä: {laskut.toFixed(2)} €</p>
 
-</CardContent></Card><Card><CardContent className="p-6 bg-gray-100 rounded"><h2 className="font-bold">3. Muut menot</h2>
+</CardContent></Card><Card><CardContent style={{ backgroundColor: '#f3f4f6', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 className="font-bold">3. Muut menot</h2>
 <Rivi label="Harrastaminen" id="harrastukset" />
 <Rivi label="Wolt / Foodora" id="ruokaUlkona" />
 <Rivi label="Ravintolat" id="ravintolat" />
@@ -165,7 +165,7 @@ export default function BudgetApp() {
 <Rivi label="Muu meno" id="muuMeno" />
 <p className="font-semibold">Yhteensä: {muutMenot.toFixed(2)} €</p>
 
-</CardContent></Card><Card><CardContent className="p-6 bg-green-50 rounded"><h2 className="font-bold">4. Tulot</h2>
+</CardContent></Card><Card><CardContent style={{ backgroundColor: '#dcfce7', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 className="font-bold">4. Tulot</h2>
 <Rivi label="Palkka" id="palkka" />
 <Rivi label="Asumistuki" id="asumistuki" />
 <Rivi label="Työttömyysturva" id="tyottomyysturva" />
@@ -186,7 +186,7 @@ export default function BudgetApp() {
 
       <Button onClick={lataaKuvana}>Tallenna kuvana</Button>
       <Button onClick={tyhjenna} className="mt-2 bg-red-600 hover:bg-red-700">Tyhjennä kaikki</Button>
-      <p className="text-center text-xs text-gray-400 mt-4">Versio 1.0</p>
+      <p className="text-center text-sm text-gray-500 mt-6">Versio 1.0</p>
     </div>
   );
 }
