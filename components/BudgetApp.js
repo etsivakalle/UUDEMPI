@@ -180,7 +180,7 @@ export default function BudgetApp() {
       </p>
 
       <div id="budjetti-nakyma" style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
-        <Card><div style={{ flex: '1 1 280px' }}><CardContent style={{ backgroundColor: '#fee2e2', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, pakolliset: !prev.pakolliset }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.pakolliset ? '▼' : '►'} 1. Pakolliset menot <span style={{ fontSize: '12px', color: '#666', marginLeft: '4px' }}>avaa</span></h2>
+        <Card><div style={{ flex: '1 1 280px' }}><CardContent style={{ backgroundColor: '#fee2e2', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, pakolliset: !prev.pakolliset }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.pakolliset ? '▼' : '►'} 1. Pakolliset menot <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
           {auki.pakolliset && (<div>
           <Rivi label="Vuokra" id="vuokra" />
           <Rivi label="Lainat" id="lainat" />
@@ -192,7 +192,7 @@ export default function BudgetApp() {
           <p><strong>Yhteensä:</strong> {pakolliset.toFixed(2)} €</p></div>)}
         </CardContent></div></Card>
 
-        <Card><CardContent style={{ backgroundColor: '#fef9c3', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, laskut: !prev.laskut }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>$1 2. Laskujen erittely <span style={{ fontSize: '12px', color: '#666', marginLeft: '4px' }}>(avaa)</span></h2>
+        <Card><CardContent style={{ backgroundColor: '#fef9c3', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, laskut: !prev.laskut }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.laskut ? '▼' : '►'} 2. Laskujen erittely <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
           {auki.laskut && (<div>
           <Rivi label="Sähkölasku" id="sahko" />
           <Rivi label="Sähkön siirto" id="sahkonsiirto" />
@@ -204,7 +204,7 @@ export default function BudgetApp() {
           <p><strong>Yhteensä:</strong> {laskut.toFixed(2)} €</p></div>)}
         </CardContent></Card>
 
-        <Card><CardContent style={{ backgroundColor: '#f3f4f6', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, muut: !prev.muut }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>$1 3. Muut menot <span style={{ fontSize: '12px', color: '#666', marginLeft: '4px' }}>(avaa)</span></h2>
+        <Card><CardContent style={{ backgroundColor: '#f3f4f6', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, muut: !prev.muut }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.muut ? '▼' : '►'} 3. Muut menot <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
           {auki.muut && (<div>
           <Rivi label="Harrastaminen" id="harrastukset" />
           <Rivi label="Wolt / Foodora" id="ruokaUlkona" />
@@ -216,7 +216,7 @@ export default function BudgetApp() {
           <p><strong>Yhteensä:</strong> {muutMenot.toFixed(2)} €</p></div>)}
         </CardContent></Card>
 
-        <Card><CardContent style={{ backgroundColor: '#dcfce7', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, tulot: !prev.tulot }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>$1 4. Tulot <span style={{ fontSize: '12px', color: '#666', marginLeft: '4px' }}>(avaa)</span></h2>
+        <Card><CardContent style={{ backgroundColor: '#dcfce7', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, tulot: !prev.tulot }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.tulot ? '▼' : '►'} 4. Tulot <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
           {auki.tulot && (<div>
           <Rivi label="Palkka" id="palkka" />
           <Rivi label="Asumistuki" id="asumistuki" />
