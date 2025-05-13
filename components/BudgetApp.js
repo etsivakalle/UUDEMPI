@@ -193,7 +193,7 @@ export default function BudgetApp() {
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '16px', fontFamily: 'sans-serif' }}>
+    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '16px', fontFamily: 'sans-serif', backgroundColor: '#f0f4ff' }}>
       <h1 style={{ fontSize: '28px', fontWeight: 'bold', textAlign: 'center', marginBottom: '8px' }}>Oma Budjetti</h1>
       <p style={{ textAlign: 'center', fontSize: '14px', color: '#555', marginBottom: '16px' }}>
         Stadin etsivät, Helsingin kaupungin etsivä nuorisotyö
@@ -250,7 +250,7 @@ export default function BudgetApp() {
           
         </CardContent></Card>
 
-        <Card><CardContent style={{ backgroundColor: '#e0e7ff', padding: '1.5rem', borderRadius: '0.5rem', fontSize: '18px' }}>
+        <Card><CardContent style={{ backgroundColor: '#c7d2fe', padding: '1.5rem', borderRadius: '0.5rem', fontSize: '18px' }}>
           <h2 style={{ marginBottom: '8px' }}>Yhteenveto</h2>
           <p><strong>Kuukauden tulot yhteensä:</strong> {tulot.toFixed(2)} €</p>
           <p><strong>Kuukauden menot yhteensä:</strong> {kokonaisMenot.toFixed(2)} €</p>
@@ -262,7 +262,7 @@ export default function BudgetApp() {
       <Button onClick={lataaKuvana}>Tallenna kuvana</Button>
       <Button onClick={lataaPdf}>Lataa PDF</Button>
       <Button onClick={tyhjenna}>Tyhjennä kaikki</Button>
-      <p style={{ textAlign: 'center', fontSize: '14px', color: '#777', marginTop: '24px' }}>Versio 2.0</p>
+      <p style={{ textAlign: 'center', fontSize: '14px', color: '#777', marginTop: '24px' }}>Versio 1.0</p>
     </div>
   );
 }
