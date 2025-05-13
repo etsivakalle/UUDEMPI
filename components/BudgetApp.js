@@ -180,7 +180,7 @@ export default function BudgetApp() {
       </p>
 
       <div id="budjetti-nakyma" style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
-        <Card><div style={{ flex: '1 1 280px' }}><CardContent style={{ backgroundColor: '#fee2e2', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, pakolliset: !prev.pakolliset }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>$1 1. Pakolliset menot <span style={{ fontSize: '12px', color: '#666', marginLeft: '4px' }}>(avaa)</span></h2>
+        <Card><div style={{ flex: '1 1 280px' }}><CardContent style={{ backgroundColor: '#fee2e2', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, pakolliset: !prev.pakolliset }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.pakolliset ? '▼' : '►'} 1. Pakolliset menot <span style={{ fontSize: '12px', color: '#666', marginLeft: '4px' }}>avaa</span></h2>
           {auki.pakolliset && (<div>
           <Rivi label="Vuokra" id="vuokra" />
           <Rivi label="Lainat" id="lainat" />
