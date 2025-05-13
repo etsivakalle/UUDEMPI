@@ -262,7 +262,7 @@ export default function BudgetApp() {
       <Button onClick={lataaKuvana}>Tallenna kuvana</Button>
       <Button onClick={lataaPdf}>Lataa PDF</Button>
       <Button onClick={tyhjenna}>Tyhjennä kaikki</Button>
-      <p style={{ textAlign: 'center', fontSize: '14px', color: '#777', marginTop: '24px' }}>Versio 1.0</p>
+      <p style={{ textAlign: 'center', fontSize: '14px', color: '#777', marginTop: '24px' }}>Versio 2.0</p>
     </div>
   );
 }
