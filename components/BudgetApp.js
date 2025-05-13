@@ -227,10 +227,7 @@ export default function BudgetApp() {
           <Rivi label="Sairauspäiväraha" id="sairauspvraha" />
           <Rivi label="Muu tulo" id="muutTulot" />
           <p><strong>Yhteensä:</strong> {tulot.toFixed(2)} €</p></div>)}
-          <hr style={{ margin: '16px 0' }} />
-          <p><strong>Kuukauden tulot yhteensä:</strong> {tulot.toFixed(2)} €</p>
-          <p><strong>Kuukauden menot yhteensä:</strong> {kokonaisMenot.toFixed(2)} €</p>
-          <p><strong>Kuukauden saldo:</strong> <span style={{ color: saldo >= 0 ? 'green' : 'red' }}>{saldo.toFixed(2)} €</span></p>
+          
         </CardContent></Card>
 
         <Card><CardContent style={{ backgroundColor: '#e0e7ff', padding: '1.5rem', borderRadius: '0.5rem', fontSize: '18px' }}>
