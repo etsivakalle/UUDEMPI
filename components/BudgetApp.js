@@ -123,6 +123,16 @@ export default function BudgetApp() {
   };
 
   const lataaPdf = async () => {
+    const alkuperainen = { ...auki };
+    setAuki({
+      pakolliset: true,
+      laskut: true,
+      muut: true,
+      tulot: true,
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
     const element = document.getElementById("budjetti-nakyma");
     if (element) {
       const canvas = await html2canvas(element);
@@ -137,6 +147,8 @@ export default function BudgetApp() {
       pdf.addImage(imgData, "PNG", 0, margin > 0 ? margin : 0, imgWidth, imgHeight);
       pdf.save("budjetti.pdf");
     }
+
+    setAuki(alkuperainen);
   };
 
   const ryhmaSumma = (avaimet) => avaimet.reduce((sum, k) => sum + arvot[k], 0);
