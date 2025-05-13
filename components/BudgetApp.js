@@ -200,7 +200,7 @@ export default function BudgetApp() {
       </p>
 
       <div id="budjetti-nakyma" style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
-        <Card><div style={{ flex: '1 1 280px' }}><CardContent style={{ backgroundColor: '#fee2e2', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, pakolliset: !prev.pakolliset }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.pakolliset ? '▼' : '►'} 1. Pakolliset menot <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
+        <Card><div style={{ flex: '1 1 280px' }}><CardContent style={{ backgroundColor: '#fee2e2', padding: '1.5rem', borderRadius: '0.5rem', border: '1px solid #999' }}><h2 onClick={() => setAuki(prev => ({ ...prev, pakolliset: !prev.pakolliset }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.pakolliset ? '▼' : '►'} 1. Pakolliset menot <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
           {auki.pakolliset && (<div>
           <Rivi label="Vuokra" id="vuokra" />
           <Rivi label="Lainat" id="lainat" />
@@ -212,7 +212,7 @@ export default function BudgetApp() {
           <p><strong>Yhteensä:</strong> {pakolliset.toFixed(2)} €</p></div>)}
         </CardContent></div></Card>
 
-        <Card><CardContent style={{ backgroundColor: '#fef9c3', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, laskut: !prev.laskut }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.laskut ? '▼' : '►'} 2. Laskujen erittely <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
+        <Card><CardContent style={{ backgroundColor: '#fef9c3', padding: '1.5rem', borderRadius: '0.5rem', border: '1px solid #999' }}><h2 onClick={() => setAuki(prev => ({ ...prev, laskut: !prev.laskut }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.laskut ? '▼' : '►'} 2. Laskujen erittely <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
           {auki.laskut && (<div>
           <Rivi label="Sähkölasku" id="sahko" />
           <Rivi label="Sähkön siirto" id="sahkonsiirto" />
@@ -224,7 +224,7 @@ export default function BudgetApp() {
           <p><strong>Yhteensä:</strong> {laskut.toFixed(2)} €</p></div>)}
         </CardContent></Card>
 
-        <Card><CardContent style={{ backgroundColor: '#f3f4f6', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, muut: !prev.muut }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.muut ? '▼' : '►'} 3. Muut menot <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
+        <Card><CardContent style={{ backgroundColor: '#d1d5db', padding: '1.5rem', borderRadius: '0.5rem', border: '1px solid #999' }}><h2 onClick={() => setAuki(prev => ({ ...prev, muut: !prev.muut }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.muut ? '▼' : '►'} 3. Muut menot <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
           {auki.muut && (<div>
           <Rivi label="Harrastaminen" id="harrastukset" />
           <Rivi label="Wolt / Foodora" id="ruokaUlkona" />
@@ -236,7 +236,7 @@ export default function BudgetApp() {
           <p><strong>Yhteensä:</strong> {muutMenot.toFixed(2)} €</p></div>)}
         </CardContent></Card>
 
-        <Card><CardContent style={{ backgroundColor: '#dcfce7', padding: '1.5rem', borderRadius: '0.5rem' }}><h2 onClick={() => setAuki(prev => ({ ...prev, tulot: !prev.tulot }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.tulot ? '▼' : '►'} 4. Tulot <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
+        <Card><CardContent style={{ backgroundColor: '#dcfce7', padding: '1.5rem', borderRadius: '0.5rem', border: '1px solid #999' }}><h2 onClick={() => setAuki(prev => ({ ...prev, tulot: !prev.tulot }))} style={{ cursor: 'pointer', marginBottom: '8px' }}>{auki.tulot ? '▼' : '►'} 4. Tulot <span style={{ fontSize: '12px', color: '#666', marginLeft: '6px' }}>(avaa)</span></h2>
           {auki.tulot && (<div>
           <Rivi label="Palkka" id="palkka" />
           <Rivi label="Asumistuki" id="asumistuki" />
@@ -250,7 +250,7 @@ export default function BudgetApp() {
           
         </CardContent></Card>
 
-        <Card><CardContent style={{ backgroundColor: '#c7d2fe', padding: '1.5rem', borderRadius: '0.5rem', fontSize: '18px' }}>
+        <Card><CardContent style={{ backgroundColor: '#93c5fd', padding: '1.5rem', borderRadius: '0.5rem', fontSize: '18px', border: '1px solid #666' }}>
           <h2 style={{ marginBottom: '8px' }}>Yhteenveto</h2>
           <p><strong>Kuukauden tulot yhteensä:</strong> {tulot.toFixed(2)} €</p>
           <p><strong>Kuukauden menot yhteensä:</strong> {kokonaisMenot.toFixed(2)} €</p>
