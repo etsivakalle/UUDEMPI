@@ -123,32 +123,40 @@ export default function BudgetApp() {
   };
 
   const lataaPdf = async () => {
-    const alkuperainen = { ...auki };
-    setAuki({
-      pakolliset: true,
-      laskut: true,
-      muut: true,
-      tulot: true,
-    });
+    const pdf = new jsPDF();
+    let y = 10;
 
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    const kirjoitaOsio = (otsikko, avaimet) => {
+      pdf.setFontSize(14);
+      pdf.text(otsikko, 10, y);
+      y += 7;
+      pdf.setFontSize(12);
+      avaimet.forEach((avain) => {
+        const arvo = arvot[avain];
+        if (arvo > 0) {
+          pdf.text(`- ${avain.charAt(0).toUpperCase() + avain.slice(1)}: ${arvo.toFixed(2)} €`, 12, y);
+          y += 6;
+        }
+      });
+      y += 5;
+    };
 
-    const element = document.getElementById("budjetti-nakyma");
-    if (element) {
-      const canvas = await html2canvas(element);
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-      const imgProps = pdf.getImageProperties(imgData);
-      const imgWidth = pageWidth;
-      const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
-      const margin = (pageHeight - imgHeight) / 2;
-      pdf.addImage(imgData, "PNG", 0, margin > 0 ? margin : 0, imgWidth, imgHeight);
-      pdf.save("budjetti.pdf");
-    }
+    kirjoitaOsio('Pakolliset menot', ["vuokra", "lainat", "velat", "laskut", "ruoka", "vaatteet", "muuPakollinen"]);
+    kirjoitaOsio('Laskujen erittely', ["sahko", "sahkonsiirto", "vakuutus", "vesi", "puhelin", "netti", "muutLaskut"]);
+    kirjoitaOsio('Muut menot', ["harrastukset", "ruokaUlkona", "ravintolat", "suoratoisto", "hsl", "nikotiini", "muuMeno"]);
+    kirjoitaOsio('Tulot', ["palkka", "asumistuki", "tyottomyysturva", "toimeentulotuki", "opintoraha", "opintolaina", "sairauspvraha", "muutTulot"]);
 
-    setAuki(alkuperainen);
+    pdf.setFontSize(14);
+    pdf.text('Yhteenveto', 10, y);
+    y += 7;
+    pdf.setFontSize(12);
+    pdf.text(`Kuukauden tulot yhteensä: ${tulot.toFixed(2)} €`, 12, y);
+    y += 6;
+    pdf.text(`Kuukauden menot yhteensä: ${kokonaisMenot.toFixed(2)} €`, 12, y);
+    y += 6;
+    pdf.text(`Kuukauden saldo: ${saldo.toFixed(2)} €`, 12, y);
+
+    pdf.save("budjetti_yhteenveto.pdf");
   };
 
   const ryhmaSumma = (avaimet) => avaimet.reduce((sum, k) => sum + arvot[k], 0);
